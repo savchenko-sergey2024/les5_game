@@ -1,10 +1,17 @@
 import file_operations
 
+
 from faker import Faker
+
 
 import random
 
-context1 = [
+
+import os
+
+
+PATH = 'C:\PythonProjects\les5_game\svg'
+CONTEXT_1 = [
     'Стремительный прыжок',
     'Электрический выстрел',
     'Ледяной удар',
@@ -14,7 +21,7 @@ context1 = [
     'Ледяной выстрел',
     'Огненный заряд',
 ]
-alphabet = {
+ALPHABET = {
     'а': 'а͠',
     'б': 'б̋',
     'в': 'в͒͠',
@@ -88,14 +95,14 @@ alphabet = {
 def main():
     for cards in range(10):
         fake = Faker("ru_RU")
-        context2 = (random.sample(context1, 3))
+        context_2 = (random.sample(CONTEXT_1, 3))
 
-        context2_list = ', '.join(context2)
+        context_2_list = ', '.join(context_2)
 
-        for key, values in alphabet.items():
-            context2_list = context2_list.replace(key, values)
+        for key, values in ALPHABET.items():
+            context_2_list = context_2_list.replace(key, values)
 
-        context2_list = context2_list.split(',')
+        context_2_list = context_2_list.split(',')
         context = {
             'first_name': fake.first_name_male(),
             'last_name': fake.last_name_male(),
@@ -106,9 +113,10 @@ def main():
             'endurance': random.randint(3, 18),
             'intelligence': random.randint(3, 18),
             'luck': random.randint(3, 18),
-            'skill_1': context2_list[0],
-            'skill_2': context2_list[1],
-            'skill_3': context2_list[2]}
+            'skill_1': context_2_list[0],
+            'skill_2': context_2_list[1],
+            'skill_3': context_2_list[2]}
+        os.makedirs(PATH, exist_ok=True)
         file_operations.render_template('charsheet.svg', 'svg/resultfake-{0}.svg'.format(cards), context)
 
 
