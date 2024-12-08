@@ -1,16 +1,10 @@
 import file_operations
-
-
 from faker import Faker
-
-
 import random
-
-
 import os
 
 
-PATH = 'C:\PythonProjects\les5_game\svg'
+PATH = 'svg'
 CONTEXT_1 = [
     'Стремительный прыжок',
     'Электрический выстрел',
